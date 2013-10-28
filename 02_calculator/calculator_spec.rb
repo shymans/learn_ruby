@@ -54,10 +54,12 @@ end
 
 describe "#multiply" do
 
-  it "multiplies two numbers" do 
+  it "multiplies two numbers" do
+    multiply([2,4]) == 8 
   end
 
   it "multiplies several numbers" do
+    multiply([2,4,5]) == 40
   end
 
 end
@@ -66,17 +68,22 @@ end
 describe "#factorial" do
 
   it "computes the factorial of 0" do
+    factorial(0) == 1
   end
 
   it "computes the factorial of 1" do
+    factorial(1) == 1
   end
 
   it "computes the factorial of 2" do
+    factorial(2) == 2
   end
 
-  it "computes the factorial of 5" do 
+  it "computes the factorial of 5" do
+    factorial(5) == 120 
   end
 
   it "computes the factorial of 10" do 
+    factorial(10) == 3628800
   end
 end
