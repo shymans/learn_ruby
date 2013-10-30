@@ -1,44 +1,25 @@
 class Changer
 
+    PENNY = 1
+    NICKEL = 5
+    DIME = 10
+    QUARTER = 25
+
   def self.make_change(num)
-    if num % 50 == 0
-      test = Array.new
-      new_num = num.to_i / 2
-      test << new_num
-      test << new_num
-      puts "#{test}"
-    elsif num % 20 == 0
-      test = Array.new
-      new_num = num / 2
-      test << new_num
-      test << new_num
-      puts "#{test}"
-    elsif num % 25 == 0
-      test = Array.new
-      test << num
-      puts "#{test}"
-    elsif num % 10 == 0
-      test = Array.new
-      test << num
-      puts "#{test}"
-    elsif num % 7 == 0
-      test = Array.new
-      new_num = num - 2
-      test << new_num
-      test << 1
-      test << 1
-      puts "#{test}"
-    elsif num % 68 == 0
-      test = Array.new
-      test << 25
-      test << 25
-      test << 10
-      test << 5
-      test << 1
-      test << 1
-      test << 1
-      puts "#{test}"
-    end
+    
+    change_array = []
+
+    quarters = num / QUARTER
+    dimes = (num % QUARTER) / DIME
+    nickels = (num % DIME) / NICKEL
+    pennies = (num % NICKEL) / PENNY
+
+
+    quarters.times { change_array << QUARTER }
+    dimes.times { change_array << DIME }
+    nickels.times { change_array << NICKEL }
+    pennies.times { change_array << PENNY }
+    puts "#{change_array}"
   end
 
 end
