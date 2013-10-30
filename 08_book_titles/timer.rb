@@ -1,5 +1,9 @@
 class Timer
-attr_accessor 
+
+  SECOND = 1
+  MINUTE = 60
+  HOUR = 3600
+
   def timer=
   end
 
@@ -12,39 +16,27 @@ attr_accessor
   end
 
   def padded(num)
-    if num == 0
-      "00:00:00"
-    elsif num.to_i <= 10
-      "00:00:0#{num}"
-    elsif num.to_i > 10 && num.to_i < 60
-      "00:00:#{num}"
-    elsif num.to_i >= 60 && num.to_i < 3600
-      seconds = num % 60
-      minutes = num / 60
-      if seconds < 10 && minutes < 10
-        "00:0#{minutes}:0#{seconds}"
-      elsif seconds < 10 && minutes >= 10
-        "00:#{minutes}:0#{seconds}"
-      elsif seconds >= 10 && minute >= 10
-        "00:#{minutes}:#{seconds}"
-      end
-    elsif num.to_i >= 3600
-      hours = num / 3600
-      minutes = (num - 3600) / 60
-      seconds = (num - 3600) % 60
-      if seconds < 10 && minutes < 10
-        "0#{hours}:0#{minutes}:0#{seconds}"
-      elsif seconds < 10 && minutes >= 10
-        "0#{hours}:#{minutes}:0#{seconds}"
-      elsif seconds >= 10 && minutes >= 10
-        "0#{hours}:#{minutes}:#{seconds}"
-      elsif seconds >= 10 && minutes < 10
-        "0#{hours}:0#{minutes}:#{seconds}"
-      end
+    
+  hours = num / HOUR
+  minutes = ( num % HOUR ) / MINUTE
+  seconds_count = ( num % MINUTE ) / SECOND
 
-    end
+  if hours >= 10 && minutes >= 10 && seconds_count >= 10
+    "#{hours}:#{minutes}:#{seconds_count}"
+  elsif hours >= 10 && minutes >= 10 && seconds_count < 10
+    "#{hours}:#{minutes}:0#{seconds_count}"
+  elsif hours >= 10 && minutes < 10 && seconds_count < 10
+    "#{hours}:0#{minutes}:0#{seconds_count}"
+  elsif hours >= 10 && minutes < 10 && seconds_count >= 10
+    "#{hours}:0#{minutes}:#{seconds_count}"
+  elsif hours < 10 && minutes >= 10 && seconds_count >= 10
+    "0#{hours}:#{minutes}:#{seconds_count}"
+  elsif hours < 10 && minutes < 10 && seconds_count >= 10
+    "0#{hours}:0#{minutes}:#{seconds_count}"
+  elsif hours < 10 && minutes < 10 && seconds_count < 10
+    "0#{hours}:0#{minutes}:0#{seconds_count}"
   end
-
+end
 
   def seconds
     0
