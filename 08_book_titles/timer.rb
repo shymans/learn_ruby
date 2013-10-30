@@ -15,31 +15,21 @@ class Timer
     padded(@secs)
   end
 
-  def padded(num)
-    
-  hours = num / HOUR
-  minutes = ( num % HOUR ) / MINUTE
-  seconds_count = ( num % MINUTE ) / SECOND
+  def padded(num)  
+    hours = num / HOUR
+    minutes = ( num % HOUR ) / MINUTE
+    seconds_count = ( num % MINUTE ) / SECOND
 
-  if hours >= 10 && minutes >= 10 && seconds_count >= 10
-    "#{hours}:#{minutes}:#{seconds_count}"
-  elsif hours >= 10 && minutes >= 10 && seconds_count < 10
-    "#{hours}:#{minutes}:0#{seconds_count}"
-  elsif hours >= 10 && minutes < 10 && seconds_count < 10
-    "#{hours}:0#{minutes}:0#{seconds_count}"
-  elsif hours >= 10 && minutes < 10 && seconds_count >= 10
-    "#{hours}:0#{minutes}:#{seconds_count}"
-  elsif hours < 10 && minutes >= 10 && seconds_count >= 10
-    "0#{hours}:#{minutes}:#{seconds_count}"
-  elsif hours < 10 && minutes < 10 && seconds_count >= 10
-    "0#{hours}:0#{minutes}:#{seconds_count}"
-  elsif hours < 10 && minutes < 10 && seconds_count < 10
-    "0#{hours}:0#{minutes}:0#{seconds_count}"
+    digitize(hours) + ":" + digitize(minutes) + ":" + digitize(seconds_count)
+
   end
-end
 
   def seconds
     0
+  end
+
+  def digitize(number)
+    number.between?(0, 9) ? "0#{number}" : "#{number}"
   end
 
 end
